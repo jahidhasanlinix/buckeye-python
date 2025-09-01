@@ -959,7 +959,9 @@ def main() -> None:
             )
         )
         console.print("\n[yellow]Quick Start:[/yellow]")
-        console.print("  1. Create a new environment: [cyan]buckeye init my-env && cd my-env[/cyan]")
+        console.print(
+            "  1. Create a new environment: [cyan]buckeye init my-env && cd my-env[/cyan]"
+        )
         console.print("  2. Develop with hot-reload: [cyan]buckeye dev --interactive[/cyan]")
         console.print("  3. Build for production: [cyan]buckeye build[/cyan]")
         console.print("  4. Share your environment: [cyan]buckeye push[/cyan]")
@@ -967,7 +969,9 @@ def main() -> None:
         console.print("  6. Run and test: [cyan]buckeye run <image>[/cyan]")
         console.print("\n[yellow]RL Training:[/yellow]")
         console.print("  1. Generate config: [cyan]buckeye rl init my-env:latest[/cyan]")
-        console.print("  2. Create dataset: [cyan]buckeye hf tasks.json --name my-org/my-tasks[/cyan]")
+        console.print(
+            "  2. Create dataset: [cyan]buckeye hf tasks.json --name my-org/my-tasks[/cyan]"
+        )
         console.print("  3. Start training: [cyan]buckeye rl --model Qwen/Qwen2.5-3B[/cyan]\n")
 
     app()

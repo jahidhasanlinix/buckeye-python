@@ -112,7 +112,9 @@ def display_interactive(analysis: dict) -> None:
 
         if "build_info" in analysis:
             meta_table.add_row("Built", analysis["build_info"].get("generatedAt", "Unknown"))
-            meta_table.add_row("Buckeye Version", analysis["build_info"].get("buckeyeVersion", "Unknown"))
+            meta_table.add_row(
+                "Buckeye Version", analysis["build_info"].get("buckeyeVersion", "Unknown")
+            )
 
         if "push_info" in analysis:
             meta_table.add_row("Pushed", analysis["push_info"].get("pushedAt", "Unknown"))

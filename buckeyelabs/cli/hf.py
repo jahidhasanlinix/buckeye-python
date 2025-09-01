@@ -254,7 +254,7 @@ def hf_command(
         if isinstance(server_config, dict) and "url" in server_config:
             url = server_config.get("url", "")
             # if "mcp.hud.so" in url: # mcp.buckeye.so
-            if "localhost:8765" in url: # mcp.buckeye.so
+            if "localhost:8765" in url:  # mcp.buckeye.so
                 config_type = "remote"
                 # Extract image from Mcp-Image header if present
                 headers = server_config.get("headers", {})
@@ -319,7 +319,7 @@ def hf_command(
                     # Create remote MCP config
                     remote_config = {
                         "buckeye": {
-                            "url": "http://localhost:8765/mcp", # localhost:8765/mcp
+                            "url": "http://localhost:8765/mcp",  # localhost:8765/mcp
                             "headers": {
                                 "Authorization": "Bearer $BUCKEYE_API_KEY",
                                 "Mcp-Image": image,

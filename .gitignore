@@ -49,6 +49,6 @@ test/
 # Buckeye
 /buckeye-python
 /buckeye-python.egg-info
-
 mysetup.md
-README.md
+testREADME.md
+rlREADME.md

@@ -29,6 +29,7 @@ dependencies = [
     "opentelemetry-api>=1.34.1",
     "opentelemetry-sdk>=1.34.1",
     "opentelemetry-exporter-otlp-proto-http>=1.34.1",
+    "verifiers>=0.1.3",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -80,7 +81,7 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["buckeyelabs"]
+packages = ["buckeyelabs", "rl/buckeye-vf-gym/src"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "buckeyelabs/py.typed" = "buckeyelabs/py.typed"

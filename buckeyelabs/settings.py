@@ -15,13 +15,13 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="allow")
 
     buckeye_telemetry_url: str = Field(
-        default="http://localhost:8765/api", # https://telemetry.hud.so/v3/api
+        default="http://localhost:8765/api",  # https://telemetry.hud.so/v3/api
         description="Base URL for the Buckeye API",
         validation_alias="BUCKEYE_TELEMETRY_URL",
     )
 
     buckeye_mcp_url: str = Field(
-        default="http://localhost:8765/mcp", # https://mcp.hud.so/v3/mcp
+        default="http://localhost:8765/mcp",  # https://mcp.hud.so/v3/mcp
         description="Base URL for the MCP Server",
         validation_alias="BUCKEYE_MCP_URL",
     )

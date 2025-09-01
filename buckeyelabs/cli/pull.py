@@ -216,7 +216,9 @@ def pull_environment(
             # Full lock file data
             if "build" in lock_data:
                 table.add_row("Built", lock_data["build"].get("generatedAt", "Unknown"))
-                table.add_row("Buckeye Version", lock_data["build"].get("buckeyeVersion", "Unknown"))
+                table.add_row(
+                    "Buckeye Version", lock_data["build"].get("buckeyeVersion", "Unknown")
+                )
 
             if "environment" in lock_data:
                 env_data = lock_data["environment"]

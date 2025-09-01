@@ -293,7 +293,9 @@ def run_remote_server(
     if not api_key:
         api_key = settings.api_key
         if not api_key:
-            click.echo("❌ API key required. Set BUCKEYE_API_KEY env var or use --api-key", err=True)
+            click.echo(
+                "❌ API key required. Set BUCKEYE_API_KEY env var or use --api-key", err=True
+            )
             sys.exit(1)
 
     # Build headers

@@ -58,7 +58,7 @@ class BuckeyeSpan(BaseModel):
 
 def extract_span_attributes(
     attrs: dict[str, Any], method_name: str | None = None, span_name: str | None = None
-    ) -> BuckeyeSpanAttributes:
+) -> BuckeyeSpanAttributes:
     """Extract and parse span attributes into typed model.
 
     This handles:
@@ -351,7 +351,9 @@ class BuckeyeSpanExporter(SpanExporter):
                     api_key=self._api_key,
                 )
             except Exception as exc:
-                logger.exception("Buckeye exporter failed to send spans for task %s: %s", run_id, exc)
+                logger.exception(
+                    "Buckeye exporter failed to send spans for task %s: %s", run_id, exc
+                )
                 # If *any* group fails we return FAILURE so the OTEL SDK can retry
                 return SpanExportResult.FAILURE
 

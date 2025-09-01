@@ -15,22 +15,20 @@ class ResponseAgent:
     """
     An assistant that helps determine whether an agent should stop or continue
     based on the agent's final response message.
-    
+
     Supports both OpenAI and Anthropic APIs, with automatic provider detection
     based on available API keys.
     """
 
     def __init__(
-        self, 
-        api_key: str | None = None, 
-        provider: Literal["openai", "anthropic"] | None = None
+        self, api_key: str | None = None, provider: Literal["openai", "anthropic"] | None = None
     ) -> None:
         # Determine provider and API key
         if provider is None:
             # Auto-detect provider based on available API keys
             openai_key = api_key or settings.openai_api_key or os.environ.get("OPENAI_API_KEY")
             anthropic_key = settings.anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
-            
+
             if anthropic_key:
                 self.provider = "anthropic"
                 self.api_key = anthropic_key
@@ -44,18 +42,22 @@ class ResponseAgent:
         else:
             self.provider = provider
             if provider == "openai":
-                self.api_key = api_key or settings.openai_api_key or os.environ.get("OPENAI_API_KEY")
+                self.api_key = (
+                    api_key or settings.openai_api_key or os.environ.get("OPENAI_API_KEY")
+                )
                 if not self.api_key:
                     raise ValueError(
                         "OpenAI API key must be provided or set as OPENAI_API_KEY environment variable"
                     )
             else:  # anthropic
-                self.api_key = api_key or settings.anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
+                self.api_key = (
+                    api_key or settings.anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
+                )
                 if not self.api_key:
                     raise ValueError(
                         "Anthropic API key must be provided or set as ANTHROPIC_API_KEY environment variable"
                     )
-        
+
         # Initialize the appropriate client
         if self.provider == "openai":
             self.client = AsyncOpenAI(api_key=self.api_key)

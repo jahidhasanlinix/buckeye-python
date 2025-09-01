@@ -408,7 +408,9 @@ class InteractiveMCPTester:
             self.design.info("")
             self.design.info("Then you can:")
             self.design.info("  • Test locally: [cyan]buckeye run <image>[/cyan]")
-            self.design.info("  • Push to registry: [cyan]buckeye push --image <registry/name>[/cyan]")
+            self.design.info(
+                "  • Push to registry: [cyan]buckeye push --image <registry/name>[/cyan]"
+            )
             self.design.info("  • Use with agents via the lock file")
 
             console.print("\n[dim]Happy testing! 🎉[/dim]")

@@ -228,7 +228,7 @@ async def connect_and_train(
 
     # Create echo commands for each line
     # First remove any existing file, then create new one
-        training_script = "rm -f /root/train_buckeye_rl.py && " + " && ".join(
+    training_script = "rm -f /root/train_buckeye_rl.py && " + " && ".join(
         [f"echo {line!r} >> /root/train_buckeye_rl.py" for line in training_script_lines]
     )
 

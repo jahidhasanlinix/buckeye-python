@@ -343,7 +343,7 @@ def _print_trace_url(task_run_id: str) -> None:
         return
 
     # url = f"https://app.hud.so/trace/{task_run_id}" # TODO: change to buckeye.so
-    url = f"http://localhost:8765/trace/{task_run_id}" # TODO: change to buckeye.so
+    url = f"http://localhost:8765/trace/{task_run_id}"  # TODO: change to buckeye.so
     header = "🚀 See your agent live at:"
 
     # ANSI color codes
@@ -383,7 +383,7 @@ def _print_trace_complete_url(task_run_id: str, error_occurred: bool = False) ->
         return
 
     # url = f"https://app.hud.so/trace/{task_run_id}" # TODO: change to buckeye.so
-    url = f"http://localhost:8765/trace/{task_run_id}" # TODO: change to buckeye.so
+    url = f"http://localhost:8765/trace/{task_run_id}"  # TODO: change to buckeye.so
 
     # ANSI color codes
     GREEN = "\033[92m"

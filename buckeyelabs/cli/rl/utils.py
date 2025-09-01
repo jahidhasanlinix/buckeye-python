@@ -51,7 +51,7 @@ def get_mcp_config_from_lock() -> dict[str, Any] | None:
     if image:
         return {
             "buckeye": {
-                "url": "http://localhost:8765/mcp", # http://localhost:8765/mcp
+                "url": "http://localhost:8765/mcp",  # http://localhost:8765/mcp
                 "headers": {"Authorization": "Bearer $BUCKEYE_API_KEY", "Mcp-Image": image},
             }
         }
@@ -144,7 +144,7 @@ def create_tasks_template() -> list[dict[str, Any]]:
                 "# TODO": "Add your MCP configuration here",
                 "# Example for remote": {
                     "buckeye": {
-                        "url": "http://localhost:8765/mcp", # http://localhost:8765/mcp
+                        "url": "http://localhost:8765/mcp",  # http://localhost:8765/mcp
                         "headers": {
                             "Authorization": "Bearer $BUCKEYE_API_KEY",
                             "Mcp-Image": "your-org/your-env:latest",

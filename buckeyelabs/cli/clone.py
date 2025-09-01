@@ -120,7 +120,11 @@ def get_clone_message(clone_path: str) -> dict[str, Any] | None:
         try:
             with open(pyproject_path, "rb") as f:
                 data = tomllib.load(f)
-                if "tool" in data and "buckeye" in data["tool"] and "clone" in data["tool"]["buckeye"]:
+                if (
+                    "tool" in data
+                    and "buckeye" in data["tool"]
+                    and "clone" in data["tool"]["buckeye"]
+                ):
                     return data["tool"]["buckeye"]["clone"]
         except Exception:
             logger.warning("Failed to load clone config from %s", pyproject_path)

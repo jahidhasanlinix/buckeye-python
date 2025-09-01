@@ -81,8 +81,7 @@ async def run_single_task(
         from buckeyelabs.datasets import Task, run_dataset
     except ImportError as e:
         design.error(
-            "Dataset dependencies are not installed. "
-            "Please install with: pip install '[agent]'"
+            "Dataset dependencies are not installed. Please install with: pip install '[agent]'"
         )
         raise typer.Exit(1) from e
 
@@ -164,8 +163,7 @@ async def run_single_task(
             from buckeyelabs.datasets import load_dataset
         except ImportError as e:
             design.error(
-                "Datasets library is not installed. "
-                "Please install with: pip install '[agent]'"
+                "Datasets library is not installed. Please install with: pip install '[agent]'"
             )
             raise typer.Exit(1) from e
 
@@ -207,11 +205,14 @@ async def run_full_dataset(
 
     # Import run_dataset lazily
     try:
-        from buckeyelabs.datasets import run_dataset, run_dataset_parallel, run_dataset_parallel_manual
+        from buckeyelabs.datasets import (
+            run_dataset,
+            run_dataset_parallel,
+            run_dataset_parallel_manual,
+        )
     except ImportError as e:
         design.error(
-            "Dataset dependencies are not installed. "
-            "Please install with: pip install '[agent]'"
+            "Dataset dependencies are not installed. Please install with: pip install '[agent]'"
         )
         raise typer.Exit(1) from e
 

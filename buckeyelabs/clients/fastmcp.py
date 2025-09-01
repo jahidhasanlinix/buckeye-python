@@ -92,7 +92,7 @@ class FastMCPBUCKClient(BaseBUCKEYEClient):
                     for server_config in mcp_config.values():
                         url = server_config.get("url", "")
                         # if "mcp.hud.so" in url: # TODO: change to buckeye.so
-                        if "localhost:8765" in url: # TODO: change to buckeye.so
+                        if "localhost:8765" in url:  # TODO: change to buckeye.so
                             raise RuntimeError(
                                 "Authentication failed for Buckeye API. "
                                 "Please ensure your BUCKEYE_API_KEY environment variable is set correctly."  # noqa: E501

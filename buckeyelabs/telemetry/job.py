@@ -104,7 +104,7 @@ def _print_job_url(job_id: str, job_name: str) -> None:
         return
 
     # url = f"https://app.hud.so/jobs/{job_id}" # TODO: change to buckeye.so
-    url = f"http://localhost:8765/jobs/{job_id}" # TODO: change to buckeye.so
+    url = f"http://localhost:8765/jobs/{job_id}"  # TODO: change to buckeye.so
     header = f"🚀 Job '{job_name}' started:"
 
     # ANSI color codes
@@ -144,7 +144,7 @@ def _print_job_complete_url(job_id: str, job_name: str, error_occurred: bool = F
         return
 
     # url = f"https://app.hud.so/jobs/{job_id}" # TODO: change to buckeye.so
-    url = f"http://localhost:8765/jobs/{job_id}" # TODO: change to buckeye.so
+    url = f"http://localhost:8765/jobs/{job_id}"  # TODO: change to buckeye.so
 
     # ANSI color codes
     GREEN = "\033[92m"

@@ -440,7 +440,9 @@ def push_environment(
     design.command_example(f"buckeye run {image}")
     design.info("")
     design.info("Share environment:")
-    design.info("  Share the updated buckeye.lock.yaml for others to reproduce your exact environment")
+    design.info(
+        "  Share the updated buckeye.lock.yaml for others to reproduce your exact environment"
+    )
 
     # TODO: Upload lock file to Buckeye registry
     if sign:
