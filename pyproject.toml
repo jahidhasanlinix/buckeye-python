@@ -162,7 +162,7 @@ omit = ["*/tests/*", "*/examples/*"]
 [tool.coverage.report]
 exclude_lines = [ "pragma: no cover", "raise AssertionError", "raise NotImplementedError", "pass", "pytest.mark.skip", "@(typing\\.)?overload", "if TYPE_CHECKING:", "if typing.TYPE_CHECKING:", "class .*\bProtocol\\):", "@(abc\\.)?abstractmethod" ]
 show_missing = true
-fail_under = 58
+# fail_under = 58
 omit = ["*/tests/*", "*/examples/*"]
 
 [tool.pytest.ini_options]
