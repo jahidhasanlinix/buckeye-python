@@ -28,6 +28,7 @@ async def run_dataset(
     split: str = "train",
     auto_respond: bool = False,
     custom_system_prompt: str | None = None,
+    remote: bool = True,
 ) -> list[Any]:
     """
     Run all tasks in a dataset with automatic job tracking.
@@ -44,6 +45,7 @@ async def run_dataset(
         split: Dataset split to use when loading from string (default: "train")
         auto_respond: Whether to use auto-response agent
         custom_system_prompt: Override system prompt for all tasks
+        remote: Whether to run the job remotely (default: True)
 
     Returns:
         List of results from agent.run() in dataset order
@@ -67,6 +69,7 @@ async def run_dataset(
     """
     # Import here to avoid circular imports
     import buckeyelabs
+    from buckeyelabs.settings import settings
 
     dataset_link = None
 
@@ -93,7 +96,12 @@ async def run_dataset(
         except Exception:
             logger.warning("Failed to extract dataset verification info")
 
-    with buckeyelabs.job(name, metadata=job_metadata, dataset_link=dataset_link) as job_obj:
+    job_context = (
+        buckeyelabs.job(name, metadata=job_metadata, dataset_link=dataset_link)
+        if remote
+        else _dummy_job_context()
+    )
+    with job_context as job_obj:
         # Run tasks with semaphore for concurrency control
         sem = asyncio.Semaphore(max_concurrent)
         results: list[Any | None] = [None] * len(dataset)
@@ -104,7 +112,12 @@ async def run_dataset(
                 task_name = task_dict.get("prompt") or f"Task {index}"
                 if custom_system_prompt and "system_prompt" not in task_dict:
                     task_dict["system_prompt"] = custom_system_prompt
-                with buckeyelabs.trace(task_name, job_id=job_obj.id, task_id=task_dict.get("id")):
+                with buckeyelabs.trace(
+                    task_name,
+                    job_id=job_obj.id,
+                    task_id=task_dict.get("id"),
+                    remote=bool(settings.api_key),
+                ):
                     # Convert dict to Task here, at trace level
                     task = Task(**task_dict)
 
@@ -121,3 +134,16 @@ async def run_dataset(
         )
 
     return results
+
+
+def _dummy_job_context():
+    from contextlib import contextmanager
+
+    @contextmanager
+    def dummy_context():
+        class DummyJob:
+            id = None
+
+        yield DummyJob()
+
+    return dummy_context()

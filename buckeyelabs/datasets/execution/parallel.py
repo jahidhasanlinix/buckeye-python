@@ -64,6 +64,7 @@ def _process_worker(
     from buckeyelabs.agents.misc.response_agent import ResponseAgent
     from buckeyelabs.datasets.task import Task
     from buckeyelabs.otel import configure_telemetry
+    from buckeyelabs.settings import settings
 
     # Ensure stdout is not buffered for immediate output
     try:
@@ -104,7 +105,12 @@ def _process_worker(
                     task_name = task_dict.get("prompt") or f"Task {index}"
 
                     # Use the job_id to group all tasks under the same job
-                    with buckeyelabs.trace(task_name, job_id=job_id, task_id=task_dict.get("id")):
+                    with buckeyelabs.trace(
+                        task_name,
+                        job_id=job_id,
+                        task_id=task_dict.get("id"),
+                        remote=bool(settings.api_key),
+                    ):
                         # Convert dict to Task
                         task = Task(**task_dict)
 
@@ -205,6 +211,7 @@ async def run_dataset_parallel_manual(
     split: str = "train",
     auto_respond: bool = False,
     custom_system_prompt: str | None = None,
+    remote: bool = True,
 ) -> list[Any]:
     """
     Run all tasks in a dataset using process-based parallelism with manual configuration.
@@ -226,6 +233,7 @@ async def run_dataset_parallel_manual(
         split: Dataset split when loading from string
         auto_respond: Whether to use ResponseAgent
         custom_system_prompt: Override system prompt for all tasks
+        remote: Whether to run the job remotely (default: True)
 
     Returns:
         List of results in the same order as the input dataset
@@ -254,6 +262,7 @@ async def run_dataset_parallel_manual(
     from datasets import load_dataset as hf_load_dataset
 
     import buckeyelabs
+    from buckeyelabs.datasets.execution.runner import _dummy_job_context
 
     # Determine optimal worker count
     if max_workers is None:
@@ -322,7 +331,12 @@ async def run_dataset_parallel_manual(
             logger.warning("Failed to extract dataset verification info")
 
     # Create job context
-    with buckeyelabs.job(name, metadata=job_metadata, dataset_link=dataset_link) as job_obj:
+    job_context = (
+        buckeyelabs.job(name, metadata=job_metadata, dataset_link=dataset_link)
+        if remote
+        else _dummy_job_context()
+    )
+    with job_context as job_obj:
         # Prepare agent class info for pickling
         agent_module = agent_class.__module__
         agent_name = agent_class.__name__
@@ -511,6 +525,7 @@ async def run_dataset_parallel(
     max_concurrent: int | None = None,
     metadata: dict[str, Any] | None = None,
     max_steps: int = 10,
+    remote: bool = True,
     **kwargs: Any,
 ) -> list[Any]:
     """
@@ -528,6 +543,7 @@ async def run_dataset_parallel(
         max_concurrent: Maximum total concurrent tasks across all workers (prevents rate limits)
         metadata: Optional metadata
         max_steps: Maximum steps per task
+        remote: Whether to run the job remotely (default: True)
         **kwargs: Additional arguments passed to run_dataset_parallel_manual
 
     Example:
@@ -588,5 +604,6 @@ async def run_dataset_parallel(
         max_concurrent=max_concurrent,
         metadata=metadata,
         max_steps=max_steps,
+        remote=remote,
         **kwargs,
     )
