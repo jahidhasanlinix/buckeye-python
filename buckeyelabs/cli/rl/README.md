@@ -213,7 +213,7 @@ When you run `buckeye rl`, the system will:
    - Installs `flash-attn` for efficient attention
 
 4. **Setup Training**:
-   <!-- - Exports WANDB_API_KEY and HUD_API_KEY -->
+   <!-- - Exports WANDB_API_KEY and BUCKEYE_API_KEY -->
    - Starts vLLM inference server on GPU 0 via tmux
    - Runs GRPO training on GPU 1
    - Logs metrics to Weights & Biases
@@ -221,7 +221,7 @@ When you run `buckeye rl`, the system will:
 ### Required API Keys
 
 Ensure these are set in your `.env` file or environment:
-<!-- - `HUD_API_KEY`: For HUD telemetry and MCP connections -->
+<!-- - `BUCKEYE_API_KEY`: For HUD telemetry and MCP connections -->
 - `WANDB_API_KEY`: For training metrics and logging
 - `PRIME_API_KEY`: For pod provisioning
 
