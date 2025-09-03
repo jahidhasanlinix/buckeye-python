@@ -1,85 +1,69 @@
 # sheetbench
 
-A minimal Buckeye environment demonstrating the Task pattern with a simple counter.
 
 ## Quick Start
 
-### Interactive Development
-```bash
-
-buckeye init sheetbench
-# 1. Configure your API keys (optional - only needed for evaluation)
-# Edit .env file to add your BUCKEYE_API_KEY and ANTHROPIC_API_KEY
-
-# 2. Start the environment (optional: with inspector)
-buckeye dev --build --inspector
-
-# 3. Choose your preferred way to test:
-
-# Option A: Run the task with Claude (requires ANTHROPIC_API_KEY)
-buckeye eval tasks.json --agent claude
-
-# Option B: Interactive notebook test_env.ipynb (great for learning!)
-# Requires installation:
-pip install buckeye-python[agents]
-
-# Option C: Simple Python script (runs all tasks from tasks.json)
-python test_task.py
-```
-
-## How Buckeye Environments Work
-
-The environment is split into two components:
-
-- **`env.py`** - Stateful logic that persists across reloads
-- **`server.py`** - MCP server with tools (reloads on file changes)
-
-This separation is crucial for `buckeye dev` - it allows you to modify the MCP tools and see changes immediately without losing the environment state. The environment runs as a separate process and communicates via socket, while the server can be restarted freely.
-
-If you are ever seeing issues with the environment itself, running `buckeye dev --full-reload` will reload both the environment and the server.
-
-## Publishing Your Environment
-
-Once your environment is ready, you can share it with the community:
-
-### 1. Push to Registry
-```bash
-# Build and push your environment (requires docker hub login and buckeye api key)
-buckeye build
-buckeye push
-```
-
-### 2. Create a Dataset
-
-Create a dataset on HuggingFace with your tasks:
-
-**Option A: Upload manually**
-1. Upload your `tasks.json` to HuggingFace
-2. Make sure it's **public** to appear on leaderboards
-
-**Option B: Use the SDK**
-```python
-from buckeyelabs.datasets import save_tasks
-import json
-
-# Load your tasks
-with open("tasks.json") as f:
-    tasks = json.load(f)
-
-# Push to HuggingFace
-save_tasks(tasks, repo_id="your-org/your-dataset")
-```
-
-### 3. Run and Track Performance
 
 ```bash
-# Run Claude on your benchmark
-buckeye eval "your-org/your-dataset" --agent claude
 
-# View results at:
-# app.buckeye.so/leaderboards/your-org/your-dataset
-```
+$ buckeye init sheetbench
 
-**Note**: Only public HuggingFace datasets appear as leaderboards!
+$ buckeye dev --build --inspector
 
-📚 Learn more: [Creating Benchmarks](https://docs.buckeye.so/evaluate-agents/create-benchmarks) | [Leaderboards](https://docs.buckeye.so/evaluate-agents/leaderboards)
+or,  build the image and hot reload
+$ buckeye dev . --build
+
+Debug it with the CLI to see if it launches: (4/5 phases passed, MCP issues, debug.txt has the report)
+$ buckeye debug sheetbench:dev
+
+
+Analyze it to see if all tools appear: (need to pull it first, but live analysis works)
+$ buckeye analyze sheetbench:dev
+
+
+
+
+buckeye-python/sheetbench/src/controller$ python hf_eval.py hud-evals/SheetBench-50 --agent claude --full --max-steps 100 --verbose
+
+
+
+
+Test:
+$ buckeye dev . --build
+and another terminal you can test it, before check the MCP is active in cursor, MOCKUP CURL request
+buckeye-python/sheetbench/src/controller$ curl -v -X POST -H "Content-Type: application/json" -H "Accept: application/json, text/event-stream" -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' http://localhost:8765/mcp
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:8765 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:8765...
+* connect to ::1 port 8765 from ::1 port 40244 failed: Connection refused
+*   Trying 127.0.0.1:8765...
+* Connected to localhost (127.0.0.1) port 8765
+> POST /mcp HTTP/1.1
+> Host: localhost:8765
+> User-Agent: curl/8.5.0
+> Content-Type: application/json
+> Accept: application/json, text/event-stream
+> Content-Length: 151
+> 
+< HTTP/1.1 200 OK
+< date: Wed, 03 Sep 2025 20:00:16 GMT
+< server: uvicorn
+< cache-control: no-cache, no-transform
+< connection: keep-alive
+< content-type: text/event-stream
+< mcp-session-id: f8cd079e40ef48db9ee9f18528e22a67
+< x-accel-buffering: no
+< Transfer-Encoding: chunked
+< 
+event: message
+data: {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05","capabilities":{"experimental":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"buckeye dev Proxy - sheetbench:dev","version":"1.13.1"}}}
+
+* Connection #0 to host localhost left intact
+
+
+When I try this test code:
+$ python -c "from datasets import load_dataset; ds = load_dataset('hud-evals/SheetBench-50', split='train'); print('Task keys:', list(ds[0].keys())); print('MCP config:', ds[0].get('mcp_config', 'No mcp_config'))"
+Task keys: ['prompt', 'mcp_config', 'id', 'metadata', 'setup_tool', 'evaluate_tool', 'system_prompt']
+MCP config: {"hud": {"url": "https://mcp.hud.so/v3/mcp", "headers": {"Authorization": "Bearer ${HUD_API_KEY}", "Mcp-Image": "hudevals/hud-remote-browser:0.1.0"}}}
