@@ -415,6 +415,7 @@ class trace:
         attributes: dict[str, Any] | None = None,
         job_id: str | None = None,
         task_id: str | None = None,
+        remote: bool | None = None,
     ) -> None:
         self.task_run_id = task_run_id
         self.job_id = job_id
@@ -422,6 +423,7 @@ class trace:
         self.is_root = is_root
         self.span_name = span_name
         self.attributes = attributes or {}
+        self.remote = remote
         self._span: otel_trace.Span | None = None
         self._span_manager: Any | None = None
         self._otel_token: object | None = None

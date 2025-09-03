@@ -1,0 +1,255 @@
+(buckeye-python) jhasan@jahid:/mnt/d/TheBinder AI/buckeye-python/she
+(buckeye-python) jhasan@jahid:/mnt/d/TheBinder AI/buckeye-python/she
+(buckeye-python) jhasan@jahid:/mnt/d/TheBinder AI/buckeye-python/she
+(buckeye-python) jhasan@jahid:/mnt/d/TheBinder AI/buckeye-python/sheetbench$ buckeye debug sheetbench:dev
+╭────────────────────────╮
+│ 🔍 MCP Server Debugger │
+╰────────────────────────╯
+Command: docker run --rm -i sheetbench:dev
+Time: 2025-09-02 22:04:52
+
+Color Key:
+  ■ Commands (bold)
+  ■ STDIO (MCP protocol)
+  ■ STDERR (server logs)
+  ■ Success messages
+  ■ Error messages
+  ■ Info messages
+
+================================================================================
+PHASE 1: Basic Server Startup Test
+================================================================================
+
+$ docker run --rm ...
+✅ Command executable found
+
+================================================================================
+PHASE 2: MCP Server Initialize Test
+================================================================================
+
+[22:04:52] STDIO is used for MCP protocol, STDERR for server logs
+$ docker run --rm -i sheetbench:dev
+[STDIO] Sending: {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2024-11-05", "capabilities": {"roots": {"listChanged": true}}, "clientInfo": {"name": "DebugClient", "version": "1.0.0"}}}
+[STDERR] [INFO] 2025-09-03 03:04:56,437 | buckeyelabs.server.server | SIGTERM handler registered
+[STDERR] [INFO] 2025-09-03 03:04:56,438 | buckeyelabs.server.server | SIGINT handler registered
+[STDERR] ╭────────────────────────────────────────────────────────────────────────────╮
+[STDERR] │                                                                            │
+[STDERR] │        _ __ ___  _____           __  __  _____________    ____    ____     │
+[STDERR] │       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+[STDERR] │      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+[STDERR] │     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+[STDERR] │    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+[STDERR] │                                                                            │
+[STDERR] │                                                                            │
+[STDERR] │                                FastMCP  2.0                                │
+[STDERR] │                                                                            │
+[STDERR] │                                                                            │
+[STDERR] │           🖥️  Server name:     Buckeye Remote Browser Environment           │
+[STDERR] │           📦 Transport:       STDIO                                        │
+[STDERR] │                                                                            │
+[STDERR] │           🏎️  FastMCP version: 2.12.0                                       │
+[STDERR] │           🤝 MCP SDK version: 1.13.1                                       │
+[STDERR] │                                                                            │
+[STDERR] │           📚 Docs:            https://gofastmcp.com                        │
+[STDERR] │           🚀 Deploy:          https://fastmcp.cloud                        │
+[STDERR] │                                                                            │
+[STDERR] ╰────────────────────────────────────────────────────────────────────────────╯
+[STDERR] [09/03/25 03:04:56] INFO     Starting MCP server 'Buckeye Remote  server.py:1494
+[STDERR]                              Browser Environment' with transport
+[STDERR]                              'stdio'
+[STDERR] [INFO] 2025-09-03 03:04:56,446 | buckeyelabs.server.server | Signal handler ready, waiting for SIGTERM or SIGINT
+[STDERR] [INFO] 2025-09-03 03:04:56,448 | __main__ | [5%] Connecting to persistent context...
+[STDERR] [INFO] 2025-09-03 03:04:56,452 | __main__ | Connected to persistent remote browser context
+[STDERR] [INFO] 2025-09-03 03:04:56,453 | __main__ | Context state: {'is_initialized': False, 'startup_complete': True, 'provider_name': None, 'has_cdp_url': False, 'has_browser_provider': False, 'has_playwright_tool': False}
+[STDERR] [INFO] 2025-09-03 03:04:56,454 | __main__ | Starting fresh browser session
+[STDERR] [INFO] 2025-09-03 03:04:56,454 | __main__ | [10%] Connected to persistent context
+[STDERR] [INFO] 2025-09-03 03:04:56,454 | __main__ | [15%] Initializing new browser session...
+[STDERR] [INFO] 2025-09-03 03:04:56,454 | __main__ | [20%] Using browser provider: browserbase
+[STDERR] [INFO] 2025-09-03 03:04:56,551 | __main__ | [30%] Browser provider initialized
+[STDERR] [INFO] 2025-09-03 03:04:56,551 | __main__ | [40%] Launching remote browser...
+[STDERR] [INFO] 2025-09-03 03:04:57,287 | httpx | HTTP Request: POST https://api.browserbase.com/v1/sessions "HTTP/1.1 201 Created"
+[STDERR] [INFO] 2025-09-03 03:04:57,290 | controller.providers.browserbase | Launched BrowserBase session: bec64725-03b3-4ed7-b7f3-d46fca562acb
+[STDERR] [INFO] 2025-09-03 03:04:57,290 | controller.providers.browserbase | CDP URL: wss://connect.usw2.browserbase.com?signingKey=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.ssu_aLrajgs-wK-J-vaPB9V2mE914xtpndWeyAnT4T-rvtqoMFbyXg.WU42WYUllTymP6Qp.8yhCh-UX4N3JZpAOz3PSBls1g12MJF6zVCmlPOAyP75C9K1mtutlhI64Ng0-Wj-1f-QYj6g8ERHMwxPTs_TXU687nyhQb5sYjKHFG6KGxa5IoQ22jo5Zqj7NuHRKn6Gv48gE6CXG3vVFe2EAx6O8wqTOE3umuwbhgGPQ-2-Ooz_FGyLkCQmN1qpGuY-dFtDDQcWwUzpXWVq0xK1AFo-6L-VDqJVBbZCgvWw0MqTqBMLF_dJmgxqc-QHoT-vu1yXhVbj3eTvZ5OnlJ4Z5NbmDlINPFB8yac4Is-etJsUWSqudmq6Iy_GO1dyaw2KD4wcTybShaRoBt4g9zTE.cc8CiMKZYGhZQdFqTVGa-A
+[STDERR] [INFO] 2025-09-03 03:04:57,291 | __main__ | [60%] Browser launched, CDP URL: wss://connect.usw2.browserbase.com?signingKey=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.ssu_aLrajgs-wK-J-vaPB9V2mE914xtpndWeyAnT4T-rvtqoMFbyXg.WU42WYUllTymP6Qp.8yhCh-UX4N3JZpAOz3PSBls1g12MJF6zVCmlPOAyP75C9K1mtutlhI64Ng0-Wj-1f-QYj6g8ERHMwxPTs_TXU687nyhQb5sYjKHFG6KGxa5IoQ22jo5Zqj7NuHRKn6Gv48gE6CXG3vVFe2EAx6O8wqTOE3umuwbhgGPQ-2-Ooz_FGyLkCQmN1qpGuY-dFtDDQcWwUzpXWVq0xK1AFo-6L-VDqJVBbZCgvWw0MqTqBMLF_dJmgxqc-QHoT-vu1yXhVbj3eTvZ5OnlJ4Z5NbmDlINPFB8yac4Is-etJsUWSqudmq6Iy_GO1dyaw2KD4wcTybShaRoBt4g9zTE.cc8CiMKZYGhZQdFqTVGa-A
+[STDERR] [INFO] 2025-09-03 03:04:57,291 | buckeyelabs.tools.playwright | Connecting to remote browser via CDP: wss://connect.usw2.browserbase.com?signingKey=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.ssu_aLrajgs-wK-J-vaPB9V2mE914xtpndWeyAnT4T-rvtqoMFbyXg.WU42WYUllTymP6Qp.8yhCh-UX4N3JZpAOz3PSBls1g12MJF6zVCmlPOAyP75C9K1mtutlhI64Ng0-Wj-1f-QYj6g8ERHMwxPTs_TXU687nyhQb5sYjKHFG6KGxa5IoQ22jo5Zqj7NuHRKn6Gv48gE6CXG3vVFe2EAx6O8wqTOE3umuwbhgGPQ-2-Ooz_FGyLkCQmN1qpGuY-dFtDDQcWwUzpXWVq0xK1AFo-6L-VDqJVBbZCgvWw0MqTqBMLF_dJmgxqc-QHoT-vu1yXhVbj3eTvZ5OnlJ4Z5NbmDlINPFB8yac4Is-etJsUWSqudmq6Iy_GO1dyaw2KD4wcTybShaRoBt4g9zTE.cc8CiMKZYGhZQdFqTVGa-A
+[STDERR] [INFO] 2025-09-03 03:04:59,195 | buckeyelabs.tools.playwright | Playwright browser launched successfully
+[STDERR] [INFO] 2025-09-03 03:04:59,198 | __main__ | [65%] Browser connection established
+[STDERR] [INFO] 2025-09-03 03:04:59,200 | __main__ | [70%] Playwright tool registered
+[STDERR] [INFO] 2025-09-03 03:04:59,200 | buckeyelabs.tools.executors.base | BaseExecutor initialized
+[STDERR] [INFO] 2025-09-03 03:04:59,200 | controller.tools.executor | BrowserExecutor initialized with Playwright backend
+[STDERR] [INFO] 2025-09-03 03:04:59,200 | __main__ | [75%] Browser executor initialized
+[STDERR] [INFO] 2025-09-03 03:04:59,208 | __main__ | [80%] Registered buckeye computer tools
+[STDERR] [INFO] 2025-09-03 03:04:59,221 | __main__ | [90%] Setup and evaluate tools registered
+[STDERR] [INFO] 2025-09-03 03:04:59,222 | __main__ | [100%] Remote browser environment ready!
+[STDIO] Received: {"jsonrpc": "2.0", "id": 1, "result": {"protocolVersion": "2024-11-05", "capabilities": {"experimental": {}, "prompts": {"listChanged": false}, "resources": {"subscribe": false, "listChanged": false}, "tools": {"listChanged": true}}, "serverInfo": {"name": "Buckeye Remote Browser Environment", "version": "1.13.1"}, "instructions": "\n    This is a remote browser automation environment that connects to cloud browser providers.\n    The browser provider is configured via the BROWSER_PROVIDER environment variable.\n    \n    Available tools:\n    - setup: Initialize browser environment with various setup functions\n    - evaluate: Evaluate browser state with various evaluator functions\n    - playwright tools: Browser automation (navigate, click, type, etc.)\n    - computer tools: Control browser as if it were a desktop application\n    "}}
+✅ MCP server initialized successfully
+[22:04:59] Server: Buckeye Remote Browser Environment v1.13.1
+[22:04:59] Capabilities: experimental, prompts, resources, tools
+[STDERR] [INFO] 2025-09-03 03:04:59,237 | buckeyelabs.server.server | Received SIGTERM signal, setting shutdown flag
+[STDERR] [INFO] 2025-09-03 03:04:59,237 | buckeyelabs.server.server | Shutdown signal received, initiating graceful shutdown...
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | buckeyelabs.server.server | Lifespan `finally` block reached. Checking for SIGTERM.
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | buckeyelabs.server.server | SIGTERM detected! Calling @mcp.shutdown handler...
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | __main__ | 🔧 SIGTERM received - shutting down browser provider
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | __main__ | Closing browser provider...
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | __main__ | Browser provider closed
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | __main__ | ✅ Browser shutdown completed
+[STDERR] [INFO] 2025-09-03 03:04:59,238 | buckeyelabs.server.server | @mcp.shutdown handler completed successfully.
+
+================================================================================
+PHASE 3: MCP Tool Discovery Test
+================================================================================
+
+$ docker run --rm -i sheetbench:dev
+[22:05:04] Creating MCP client via buckeye...
+[INFO] 2025-09-03 03:05:06,409 | buckeyelabs.server.server | SIGTERM handler registered
+[INFO] 2025-09-03 03:05:06,409 | buckeyelabs.server.server | SIGINT handler registered
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│           🖥️  Server name:     Buckeye Remote Browser Environment           │
+│           📦 Transport:       STDIO                                        │
+│                                                                            │
+│           🏎️  FastMCP version: 2.12.0                                       │
+│           🤝 MCP SDK version: 1.13.1                                       │
+│                                                                            │
+│           📚 Docs:            https://gofastmcp.com                        │
+│           🚀 Deploy:          https://fastmcp.cloud                        │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[09/03/25 03:05:06] INFO     Starting MCP server 'Buckeye Remote  server.py:1494
+                             Browser Environment' with transport                
+                             'stdio'                                            
+[INFO] 2025-09-03 03:05:06,418 | buckeyelabs.server.server | Signal handler ready, waiting for SIGTERM or SIGINT
+[INFO] 2025-09-03 03:05:06,419 | __main__ | [5%] Connecting to persistent context...
+[INFO] 2025-09-03 03:05:06,426 | __main__ | Connected to persistent remote browser context
+[INFO] 2025-09-03 03:05:06,427 | __main__ | Context state: {'is_initialized': False, 'startup_complete': True, 'provider_name': None, 'has_cdp_url': False, 'has_browser_provider': False, 'has_playwright_tool': False}
+[INFO] 2025-09-03 03:05:06,427 | __main__ | Starting fresh browser session
+[INFO] 2025-09-03 03:05:06,427 | __main__ | [10%] Connected to persistent context
+[INFO] 2025-09-03 03:05:06,427 | __main__ | [15%] Initializing new browser session...
+[INFO] 2025-09-03 03:05:06,427 | __main__ | [20%] Using browser provider: browserbase
+[INFO] 2025-09-03 03:05:06,528 | __main__ | [30%] Browser provider initialized
+[INFO] 2025-09-03 03:05:06,528 | __main__ | [40%] Launching remote browser...
+[INFO] 2025-09-03 03:05:08,204 | httpx | HTTP Request: POST https://api.browserbase.com/v1/sessions "HTTP/1.1 201 Created"
+[INFO] 2025-09-03 03:05:08,206 | controller.providers.browserbase | Launched BrowserBase session: 10fb01ad-6db2-424b-a284-5b953d6f1773
+[INFO] 2025-09-03 03:05:08,206 | controller.providers.browserbase | CDP URL: wss://connect.usw2.browserbase.com?signingKey=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.FiDd4MeC-N2_SFOgmBO19IPJ5bjaUlfEQm-j8Z3eWZfnzWb-cKwK5Q.pD3qV102rhLiY00R.63CsL2pMOdCkstGKo6U3D_-JupgvNqhcRrlTCeaIQD3yj4NULExxEIykGBGgEAyy4ayq3KfAlIjyY_nvrXI_4lCnj9shX_QELHrmqizTNnQsfv9Q3X5uHk33p2pzCdL-F1Lya4E1HQbF7j7UyMYPEdI_dfG43tt7FiNjw2Flv8TRNXO4z5tYNCkzNcEBVCfH2GoyYFpqp4dBY1kVcl7Q7yBXYgDHInjVrCPeqxgDjB8KYbCvmbsg_ib4P4bAPO271twvOx2m98ua842lThI3U8U7PGHaIbeAMA3JqM6sp7l3PVFehynyR44n4czDTK_BFfV13WN_iZrlMV4.BJyT0DvzjWvd1RA4AcqHhQ
+[INFO] 2025-09-03 03:05:08,207 | __main__ | [60%] Browser launched, CDP URL: wss://connect.usw2.browserbase.com?signingKey=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.FiDd4MeC-N2_SFOgmBO19IPJ5bjaUlfEQm-j8Z3eWZfnzWb-cKwK5Q.pD3qV102rhLiY00R.63CsL2pMOdCkstGKo6U3D_-JupgvNqhcRrlTCeaIQD3yj4NULExxEIykGBGgEAyy4ayq3KfAlIjyY_nvrXI_4lCnj9shX_QELHrmqizTNnQsfv9Q3X5uHk33p2pzCdL-F1Lya4E1HQbF7j7UyMYPEdI_dfG43tt7FiNjw2Flv8TRNXO4z5tYNCkzNcEBVCfH2GoyYFpqp4dBY1kVcl7Q7yBXYgDHInjVrCPeqxgDjB8KYbCvmbsg_ib4P4bAPO271twvOx2m98ua842lThI3U8U7PGHaIbeAMA3JqM6sp7l3PVFehynyR44n4czDTK_BFfV13WN_iZrlMV4.BJyT0DvzjWvd1RA4AcqHhQ
+[INFO] 2025-09-03 03:05:08,207 | buckeyelabs.tools.playwright | Connecting to remote browser via CDP: wss://connect.usw2.browserbase.com?signingKey=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.FiDd4MeC-N2_SFOgmBO19IPJ5bjaUlfEQm-j8Z3eWZfnzWb-cKwK5Q.pD3qV102rhLiY00R.63CsL2pMOdCkstGKo6U3D_-JupgvNqhcRrlTCeaIQD3yj4NULExxEIykGBGgEAyy4ayq3KfAlIjyY_nvrXI_4lCnj9shX_QELHrmqizTNnQsfv9Q3X5uHk33p2pzCdL-F1Lya4E1HQbF7j7UyMYPEdI_dfG43tt7FiNjw2Flv8TRNXO4z5tYNCkzNcEBVCfH2GoyYFpqp4dBY1kVcl7Q7yBXYgDHInjVrCPeqxgDjB8KYbCvmbsg_ib4P4bAPO271twvOx2m98ua842lThI3U8U7PGHaIbeAMA3JqM6sp7l3PVFehynyR44n4czDTK_BFfV13WN_iZrlMV4.BJyT0DvzjWvd1RA4AcqHhQ
+[INFO] 2025-09-03 03:05:09,684 | buckeyelabs.tools.playwright | Playwright browser launched successfully
+[INFO] 2025-09-03 03:05:09,687 | __main__ | [65%] Browser connection established
+[INFO] 2025-09-03 03:05:09,689 | __main__ | [70%] Playwright tool registered
+[INFO] 2025-09-03 03:05:09,689 | buckeyelabs.tools.executors.base | BaseExecutor initialized
+[INFO] 2025-09-03 03:05:09,689 | controller.tools.executor | BrowserExecutor initialized with Playwright backend
+[INFO] 2025-09-03 03:05:09,689 | __main__ | [75%] Browser executor initialized
+[INFO] 2025-09-03 03:05:09,698 | __main__ | [80%] Registered buckeye computer tools
+[INFO] 2025-09-03 03:05:09,707 | __main__ | [90%] Setup and evaluate tools registered
+[INFO] 2025-09-03 03:05:09,708 | __main__ | [100%] Remote browser environment ready!
+[INFO] 2025-09-03 03:05:09,715 | mcp.server.lowlevel.server | Processing request of type ReadResourceRequest
+[22:05:09] Waiting for server initialization...
+[INFO] 2025-09-03 03:05:14,729 | mcp.server.lowlevel.server | Processing request of type ListToolsRequest
+✅ Found 6 tools
+[22:05:14] Lifecycle tools: setup=✅, evaluate=✅
+[22:05:14] Interaction tools: playwright, computer
+[22:05:14] All tools: setup, evaluate, playwright, computer, anthropic_computer, openai_computer
+[INFO] 2025-09-03 03:05:14,739 | mcp.server.lowlevel.server | Processing request of type ListResourcesRequest
+[22:05:14] Found 3 resources: file:///setup/functions, file:///evaluate/functions, telemetry://live...
+
+================================================================================
+PHASE 4: Remote Deployment Readiness
+================================================================================
+
+[22:05:14] Testing setup tool...
+[INFO] 2025-09-03 03:05:14,742 | mcp.server.lowlevel.server | Processing request of type CallToolRequest
+✅ Setup tool responded
+[22:05:14] Testing evaluate tool...
+[INFO] 2025-09-03 03:05:14,746 | mcp.server.lowlevel.server | Processing request of type CallToolRequest
+✅ Evaluate tool responded
+[22:05:14] Total initialization time: 22.42s
+
+================================================================================
+PHASE 5: Concurrent Clients Testing
+================================================================================
+
+[22:05:14] Creating 3 concurrent MCP clients...
+[INFO] 2025-09-03 03:05:18,379 | buckeyelabs.server.server | SIGTERM handler registered
+[INFO] 2025-09-03 03:05:18,379 | buckeyelabs.server.server | SIGINT handler registered
+
+
+╭────────────────────────────────────────────────────────────────────────────╮
+│                                                                            │
+│        _ __ ___  _____           __  __  _____________    ____    ____     │
+│       _ __ ___ .'____/___ ______/ /_/  |/  / ____/ __ \  |___ \  / __ \    │
+│      _ __ ___ / /_  / __ `/ ___/ __/ /|_/ / /   / /_/ /  ___/ / / / / /    │
+│     _ __ ___ / __/ / /_/ (__  ) /_/ /  / / /___/ ____/  /  __/_/ /_/ /     │
+│    _ __ ___ /_/    \____/____/\__/_/  /_/\____/_/      /_____(*)____/      │
+│                                                                            │
+│                                                                            │
+│                                FastMCP  2.0                                │
+│                                                                            │
+│                                                                            │
+│           🖥️  Server name:     Buckeye Remote Browser Environment           │
+│           📦 Transport:       STDIO                                        │
+│                                                                            │
+│           🏎️  FastMCP version: 2.12.0                                       │
+│           🤝 MCP SDK version: 1.13.1                                       │
+│                                                                            │
+│           📚 Docs:            https://gofastmcp.com                        │
+│           🚀 Deploy:          https://fastmcp.cloud                        │
+│                                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+
+[09/03/25 03:05:18] INFO     Starting MCP server 'Buckeye Remote  server.py:1494
+                             Browser Environment' with transport                
+                             'stdio'                                            
+[INFO] 2025-09-03 03:05:18,388 | buckeyelabs.server.server | Signal handler ready, waiting for SIGTERM or SIGINT
+[INFO] 2025-09-03 03:05:18,389 | __main__ | [5%] Connecting to persistent context...
+[INFO] 2025-09-03 03:05:18,394 | __main__ | Connected to persistent remote browser context
+[INFO] 2025-09-03 03:05:18,395 | __main__ | Context state: {'is_initialized': False, 'startup_complete': True, 'provider_name': None, 'has_cdp_url': False, 'has_browser_provider': False, 'has_playwright_tool': False}
+[INFO] 2025-09-03 03:05:18,395 | __main__ | Starting fresh browser session
+[INFO] 2025-09-03 03:05:18,395 | __main__ | [10%] Connected to persistent context
+[INFO] 2025-09-03 03:05:18,395 | __main__ | [15%] Initializing new browser session...
+[INFO] 2025-09-03 03:05:18,395 | __main__ | [20%] Using browser provider: browserbase
+[INFO] 2025-09-03 03:05:18,506 | __main__ | [30%] Browser provider initialized
+[INFO] 2025-09-03 03:05:18,506 | __main__ | [40%] Launching remote browser...
+[INFO] 2025-09-03 03:05:18,969 | httpx | HTTP Request: POST https://api.browserbase.com/v1/sessions "HTTP/1.1 429 Too Many Requests"
+[ERROR] 2025-09-03 03:05:18,971 | __main__ | Initialization failed: Client error '429 Too Many Requests' for url 'https://api.browserbase.com/v1/sessions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[ERROR] 2025-09-03 03:05:18,973 | __main__ | Traceback: Traceback (most recent call last):
+  File "/app/src/controller/server.py", line 237, in initialize_environment
+    cdp_url = await browser_provider.launch(**launch_options)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/controller/providers/browserbase.py", line 88, in launch
+    response.raise_for_status()
+  File "/usr/local/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://api.browserbase.com/v1/sessions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+[WARNING] 2025-09-03 03:05:18,973 | root | Failed to validate request: Client error '429 Too Many Requests' for url 'https://api.browserbase.com/v1/sessions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+❌ Concurrent test failed: Client failed to connect: Invalid request parameters
+[INFO] 2025-09-03 03:05:18,978 | buckeyelabs.server.server | Lifespan `finally` block reached. Checking for SIGTERM.
+[INFO] 2025-09-03 03:05:18,978 | buckeyelabs.server.server | No SIGTERM. This is a hot reload (SIGINT) or normal exit. Skipping @mcp.shutdown handler.
+[INFO] 2025-09-03 03:05:21,003 | buckeyelabs.server.server | Received SIGTERM signal, setting shutdown flag
+[INFO] 2025-09-03 03:05:21,003 | buckeyelabs.server.server | Shutdown signal received, initiating graceful shutdown...
+
+Progress: [████░] 4/5 phases (80%)
+Failed at Phase 5 - Concurrent clients & resources
+
+
+Debug Summary
+⚠️  Completed 4 out of 5 phases
+Check the errors above for troubleshooting.

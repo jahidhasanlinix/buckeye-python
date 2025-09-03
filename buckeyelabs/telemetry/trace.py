@@ -27,6 +27,7 @@ def trace(
     attrs: dict[str, Any] | None = None,
     job_id: str | None = None,
     task_id: str | None = None,
+    remote: bool | None = None,
 ) -> Generator[str, None, None]:
     """Start a Buckeye trace context.
 
@@ -37,6 +38,8 @@ def trace(
         root: Whether this is a root trace (updates task status)
         attrs: Additional attributes to attach to the trace
         job_id: Optional job ID to associate with this trace
+        task_id: Optional task ID to associate with this trace
+        remote: Whether this trace is for remote execution
 
     Yields:
         str: The auto-generated task run ID
@@ -54,6 +57,10 @@ def trace(
 
         # Or with job_id:
         with buckeyelabs.trace("My Task", job_id="550e8400-e29b-41d4-a716-446655440000") as task_run_id:
+            pass
+
+        # Or with remote execution flag:
+        with buckeyelabs.trace("My Task", remote=True) as task_run_id:
             pass
     """
     # Ensure telemetry is configured
@@ -79,5 +86,6 @@ def trace(
         attributes=attrs or {},
         job_id=job_id,
         task_id=task_id,
+        remote=remote,
     ) as run_id:
         yield run_id
