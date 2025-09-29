@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-# Core installation - Basic SDK functionality
+# Core installation - Basic SDK
 pip install buckeye-python
 
 # Agent installation - Adds AI capabilities and agent tools
